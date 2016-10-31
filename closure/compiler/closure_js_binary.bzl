@@ -243,6 +243,7 @@ closure_js_binary = rule(
         "entry_points": attr.string_list(default=[]),
         "formatting": attr.string(),
         "language": attr.string(default="ECMASCRIPT3"),
+        "output_directory": attr.string(mandatory=True),
         "output_wrapper": attr.string(),
         "pedantic": attr.bool(default=False),
         "property_renaming_report": attr.output(),
@@ -261,8 +262,8 @@ closure_js_binary = rule(
         "_closure_library_deps": CLOSURE_LIBRARY_DEPS_ATTR,
     },
     outputs={
-        "out": "%{name}.js",
-        "map": "%{name}.js.map",
+        "out": "%{output_directory}/%{name}.js",
+        "map": "%{output_directory}/%{name}.js.map",
         "provided": "%{name}-provided.txt",
         "stderr": "%{name}-stderr.txt",
     })
